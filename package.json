@@ -1,0 +1,51 @@
+{
+	"name": "@yusukeshib/pi-working-status",
+	"version": "0.1.0",
+	"description": "Replace pi's plain \"Working...\" loader with a live, detailed status line that tracks the agent through every phase of a turn.",
+	"keywords": [
+		"pi-package",
+		"pi-extension",
+		"status",
+		"loader",
+		"spinner"
+	],
+	"type": "module",
+	"license": "MIT",
+	"author": "Yusuke Shibata <yusukeshib@gmail.com>",
+	"homepage": "https://github.com/yusukeshib/pi-working-status#readme",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/yusukeshib/pi-working-status.git"
+	},
+	"bugs": {
+		"url": "https://github.com/yusukeshib/pi-working-status/issues"
+	},
+	"files": [
+		"extensions/",
+		"README.md",
+		"LICENSE"
+	],
+	"scripts": {
+		"typecheck": "tsc --noEmit",
+		"check": "bun run typecheck && bun run biome:check",
+		"release": "bun publish --access public",
+		"lint": "biome lint .",
+		"format": "biome format --write .",
+		"format:check": "biome format .",
+		"biome:check": "biome check ."
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^2.4.14",
+		"@earendil-works/pi-coding-agent": "^0.77.0",
+		"@types/bun": "^1.3.0",
+		"typescript": "^5.7.0"
+	},
+	"peerDependencies": {
+		"@earendil-works/pi-coding-agent": "*"
+	},
+	"pi": {
+		"extensions": [
+			"./extensions"
+		]
+	}
+}
