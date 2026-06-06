@@ -6,6 +6,8 @@ turn — request, streaming, and tool execution.
 
 ## What it looks like
 
+![pi-working-status in action](assets/preview.png)
+
 The detail in parentheses changes as the turn progresses:
 
 ```text

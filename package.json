@@ -1,6 +1,6 @@
 {
 	"name": "@yusukeshib/pi-working-status",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"description": "Replace pi's plain \"Working...\" loader with a live, detailed status line that tracks the agent through every phase of a turn.",
 	"keywords": [
 		"pi-package",
@@ -22,6 +22,7 @@
 	},
 	"files": [
 		"extensions/",
+		"assets/",
 		"README.md",
 		"LICENSE"
 	],
@@ -46,6 +47,7 @@
 	"pi": {
 		"extensions": [
 			"./extensions"
-		]
+		],
+		"image": "https://raw.githubusercontent.com/yusukeshib/pi-working-status/main/assets/preview.png"
 	}
 }
