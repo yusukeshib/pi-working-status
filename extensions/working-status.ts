@@ -43,6 +43,11 @@
 import type { ExtensionAPI, ExtensionContext } from "@earendil-works/pi-coding-agent";
 
 const TICK_MS = 1000; // how often the elapsed clock refreshes
+// pi's default spinner animates every 80ms, and each frame repaints the whole
+// TUI (expensive in fullscreen mode with a long transcript). The live clock
+// already shows progress, so use a single static frame while enabled: a
+// one-frame loader runs no animation timer, cutting repaints to ~1/s.
+const STATIC_INDICATOR = { frames: ["⠿"] };
 // There is no "request fully sent" event, so treat the first moment after
 // before_provider_request as "sending", then switch to "waiting for response".
 const SEND_GRACE_MS = 400;
@@ -171,6 +176,7 @@ export default function (pi: ExtensionAPI) {
 
 	const startTicker = (ctx: ExtensionContext) => {
 		lastCtx = ctx;
+		ctx.ui.setWorkingIndicator?.(STATIC_INDICATOR);
 		refresh();
 		if (ticker) clearInterval(ticker);
 		ticker = setInterval(refresh, TICK_MS);
@@ -299,6 +305,7 @@ export default function (pi: ExtensionAPI) {
 			if (!enabled) {
 				stopTicker();
 				ctx.ui.setWorkingMessage(); // back to default
+				ctx.ui.setWorkingIndicator?.(); // restore pi's animated spinner
 			}
 			ctx.ui.notify(`Working status ${enabled ? "enabled" : "disabled"}`, "info");
 		},

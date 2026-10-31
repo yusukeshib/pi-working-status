@@ -61,6 +61,11 @@ pi -e npm:@yusukeshib/pi-working-status
 ### `/working-status [on|off]`
 
 - `/working-status off` — restore pi's default `Working...` message
+
+While enabled, the animated spinner is replaced by a single static frame. pi's
+default spinner repaints the whole TUI every 80ms; the live clock already shows
+progress, so this cuts repaints during a turn to about once per second.
+`/working-status off` restores the animated spinner.
 - `/working-status on` — re-enable the detailed status line
 - `/working-status` — show the current on/off state
 
